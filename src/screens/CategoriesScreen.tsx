@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { categoryList } from '../mockData/categories';
 import { Category } from '../components/Cards/Category';

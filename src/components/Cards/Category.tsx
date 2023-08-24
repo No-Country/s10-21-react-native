@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import styles from './CategoryStyle';
 
 type Props = {
@@ -8,12 +8,17 @@ type Props = {
 };
 
 export const Category = ({ title, SvgComponent }: Props) => {
+	const onPress = () => {
+		// TODO: Cambiar listado de comida por el listado de la categoría
+		console.log('Category pressed');
+	};
+
 	return (
-		<View style={styles.container}>
-			<Text style={styles.text}>{title}</Text>
-			<View style={styles.svg}>
-				<SvgComponent width={50} height={50} />
-			</View>
+		<View style={styles.shadowBox}>
+			<TouchableOpacity style={styles.container} onPress={onPress}>
+				<Text style={styles.text}>{title}</Text>
+				<SvgComponent width={40} height={40} />
+			</TouchableOpacity>
 		</View>
 	);
 };
