@@ -1,5 +1,5 @@
 import { View, Image, Text, TouchableOpacity } from "react-native";
-import { styles } from "./cardHomeStyles";
+import { styles } from "./cardRecipeStyles";
 import { ClockIcon, FireIcon } from "../../../assets/Icons/SVGicons";
 
 const CardHome = () => {

@@ -9,19 +9,17 @@ export const styles = StyleSheet.create({
     width: "48%",
     height: 190,
     elevation: 6,
-    // justifyContent: "space-between",    
+    justifyContent: "space-between",    
 
   },
   imgContainer: {
-    backgroundColor: 'green'
   },
   favoriteIcon: {
-    backgroundColor: 'black'
   },
   image: {
     width: "100%",
     height: 100,
-    borderRadius: 15,
+    borderRadius: 5,
   },
   shortDesc: {},
   recipeTitle: {

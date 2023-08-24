@@ -1,7 +1,7 @@
 import { View, ScrollView } from "react-native";
 import SearchHeader from "../../components/searchHeader/SearchHeader";
 import { styles } from "./homeStyles";
-import CardHome from "../../components/cardHome/CardHome";
+import CardHome from "../../components/cardHome/CardRecipe";
 import { FireIcon } from "../../../assets/Icons/SVGicons";
 
 const Home = () => {
