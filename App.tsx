@@ -4,21 +4,22 @@ import RootStack from './src/navigator/RootStack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
-  return (
-    <SafeAreaProvider >
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-    </View>
-      <RootStack/>
-    </SafeAreaProvider>
-  );
+	return (
+		<SafeAreaProvider>
+			<View style={styles.container}>
+				<StatusBar style='auto' />
+			</View>
+			<RootStack />
+		</SafeAreaProvider>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	container: {
+		backgroundColor: '#fff',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingHorizontal: 30,
+	},
 });

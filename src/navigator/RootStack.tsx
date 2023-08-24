@@ -1,13 +1,14 @@
-import { View, Text } from 'react-native'
+
 import React from 'react'
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from '../screens/HomeScreen';
-import SavedRecipes from '../screens/SavedRecipes';
-import Favorites from '../screens/Favorites';
+
 import AddRecipe from '../screens/AddRecipe';
 import { Ionicons } from '@expo/vector-icons'; 
 import { Fontisto } from '@expo/vector-icons'; 
+import { CategoriesScreen } from '../screens/CategoriesScreen'
+import Home from '../screens/home/Home'
+import Favorites from '../screens/Favorites'
 
 export type RootStackParamList = {
   Home:undefined;
@@ -22,7 +23,7 @@ export default function RootStack() {
   return (
     <NavigationContainer>
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen}  options={{
+      <Tab.Screen name="Home" component={Home}  options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
             <Ionicons name="home" color={color} size={26} />
@@ -34,7 +35,7 @@ export default function RootStack() {
             <Ionicons name="heart" size={24} color={color} />         
               ),
         }}  />
-      <Tab.Screen name="SavedRecipes" component={SavedRecipes} options={{
+      <Tab.Screen name="SavedRecipes" component={CategoriesScreen} options={{
           tabBarLabel: 'Categories',
           tabBarIcon: ({ color }) => (
               <Fontisto name="favorite" size={24} color={color} />          
