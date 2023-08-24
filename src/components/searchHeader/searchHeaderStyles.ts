@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const style = StyleSheet.create({
     container:{
-        paddingHorizontal: 30,
         paddingBottom: 30,
         marginTop:30,
     },
@@ -23,13 +22,15 @@ export const style = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
         marginTop: 30,        
+        backgroundColor: '#F4F4F4'
+        
     },
     isfocused:{
         borderColor: '#23FCB6',
     },
     input:{
         flex: 1,
-        overflow: 'hidden',
-        paddingHorizontal: 5
+        // overflow: 'hidden',
+        paddingHorizontal: 5,
     }
 })

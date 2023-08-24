@@ -13,7 +13,7 @@ import { useState } from "react";
 const SearchHeader = () => {
   const [isFocused, setIsFocused] = useState(false)
   return (
-    <SafeAreaView>
+    <View>
       <ScreenTitle text="Search" />
       <View style={style.container}>
         <Text style={style.subTittle}>What is in your kitchen?</Text>
@@ -28,7 +28,7 @@ const SearchHeader = () => {
           </View>
         </TouchableWithoutFeedback>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
