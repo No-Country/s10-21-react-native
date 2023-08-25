@@ -1,13 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Home from './src/screens/home/Home';
- 
+import RootStack from './src/navigator/RootStack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 export default function App() {
-  return (
-    <View style={{    overflow: 'visible'
-  }}>
-      <StatusBar style="auto" />
-      <Home/>
-    </View>
-  );
+	return (
+		<SafeAreaProvider>
+			<View style={styles.container}>
+				<StatusBar style='auto' />
+			</View>
+			<RootStack />
+		</SafeAreaProvider>
+	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: '#fff',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingHorizontal: 30,
+	},
+});
