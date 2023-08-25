@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#F4F4F4",
     borderRadius: 15,
     width: "48%",
-    height: 190,
+    minHeight: 190,
     elevation: 4,
     justifyContent: "space-between",
   },
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 100,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   favoriteIcon: {
     position: "absolute",

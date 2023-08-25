@@ -21,7 +21,7 @@ const CardHome = () => {
     <TouchableOpacity style={styles.cardContainer}>
       <View style={styles.imgContainer}>
         <TouchableOpacity style={styles.favoriteIcon}>
-          <HeartIcon color="#4E4E4E"/>
+          <HeartIcon color="#676767"/>
         </TouchableOpacity>
         <View style={styles.favoriteIcon}></View>
         <Image
