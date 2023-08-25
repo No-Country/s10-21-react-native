@@ -18,7 +18,7 @@ const SearchHeader = () => {
       <View style={style.container}>
         <Text style={style.subTittle}>What is in your kitchen?</Text>
         <Text style={style.intruction}>Enter some ingredients</Text>
-        <TouchableWithoutFeedback onFocus={() => setIsFocused(true)}>
+        <TouchableWithoutFeedback onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
           <View style={[style.inputContainer, isFocused && style.isfocused]}>
             <SearchIcon />
             <TextInput

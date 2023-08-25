@@ -4,7 +4,8 @@ import Home from './src/screens/home/Home';
  
 export default function App() {
   return (
-    <View>
+    <View style={{    overflow: 'visible'
+  }}>
       <StatusBar style="auto" />
       <Home/>
     </View>

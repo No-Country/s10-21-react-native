@@ -3,23 +3,28 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   cardContainer: {
     padding: 10,
-    marginBottom: 20,
     backgroundColor: "#F4F4F4",
     borderRadius: 15,
     width: "48%",
     height: 190,
-    elevation: 6,
-    justifyContent: "space-between",    
-
+    elevation: 4,
+    justifyContent: "space-between",
   },
   imgContainer: {
-  },
-  favoriteIcon: {
+    position: "relative",
   },
   image: {
     width: "100%",
     height: 100,
     borderRadius: 5,
+  },
+  favoriteIcon: {
+    position: "absolute",
+    zIndex: 100,
+    backgroundColor: '#F4F4F4',
+    borderRadius: 4,
+    right: 2,
+    top: 2
   },
   shortDesc: {},
   recipeTitle: {
@@ -34,10 +39,10 @@ export const styles = StyleSheet.create({
   },
   dataText: {
     color: "#868686",
-    marginLeft:2
+    marginLeft: 2,
   },
-  dataSeparator:{
+  dataSeparator: {
     color: "#868686",
-    marginHorizontal: 5
-  }
+    marginHorizontal: 5,
+  },
 });
