@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     width: "48%",
     minHeight: 190,
     elevation: 4,
-    justifyContent: "space-between",
   },
   imgContainer: {
     position: "relative",
@@ -26,10 +25,18 @@ export const styles = StyleSheet.create({
     right: 2,
     top: 2
   },
-  shortDesc: {},
+  TextContainer: {
+    display: "flex",
+    flex: 1,
+    alignContent: "space-between", 
+    justifyContent: "space-between",
+
+  },
   recipeTitle: {
     fontSize: 20,
     fontWeight: "500",
+    alignSelf: 'flex-start',
+    textAlignVertical: "top"
   },
   kcalAndTime: {
     flexDirection: "row",
