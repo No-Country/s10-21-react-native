@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+
 	shadowBox: {
 		overflow: 'hidden',
 		paddingBottom: 5,
