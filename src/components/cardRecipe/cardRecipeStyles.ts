@@ -3,30 +3,40 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   cardContainer: {
     padding: 10,
-    marginBottom: 20,
     backgroundColor: "#F4F4F4",
     borderRadius: 15,
     width: "48%",
-    height: 190,
-    elevation: 6,
-    // justifyContent: "space-between",    
-
+    minHeight: 190,
+    elevation: 4,
   },
   imgContainer: {
-    backgroundColor: 'green'
-  },
-  favoriteIcon: {
-    backgroundColor: 'black'
+    position: "relative",
   },
   image: {
     width: "100%",
     height: 100,
-    borderRadius: 15,
+    borderRadius: 10,
   },
-  shortDesc: {},
+  favoriteIcon: {
+    position: "absolute",
+    zIndex: 100,
+    backgroundColor: '#F4F4F4',
+    borderRadius: 4,
+    right: 2,
+    top: 2
+  },
+  TextContainer: {
+    display: "flex",
+    flex: 1,
+    alignContent: "space-between", 
+    justifyContent: "space-between",
+
+  },
   recipeTitle: {
     fontSize: 20,
     fontWeight: "500",
+    alignSelf: 'flex-start',
+    textAlignVertical: "top"
   },
   kcalAndTime: {
     flexDirection: "row",
@@ -36,10 +46,10 @@ export const styles = StyleSheet.create({
   },
   dataText: {
     color: "#868686",
-    marginLeft:2
+    marginLeft: 2,
   },
-  dataSeparator:{
+  dataSeparator: {
     color: "#868686",
-    marginHorizontal: 5
-  }
+    marginHorizontal: 5,
+  },
 });
