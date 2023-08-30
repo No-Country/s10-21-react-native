@@ -1,11 +1,23 @@
-const apiKey = '419e0112f3ac8276ea3abe718b1795c1';
-const appId = '51983774';
+import { useState } from 'react';
+import recipeDB from '../api/recipeDB';
+import { recipeResponseProps } from '../types/recipeResponse';
 
-const foodDB = axios.create({
-	baseURL: `https://api.edamam.com/api/food-database/v2/parser?app_key=${apiKey}&app_id=${appId}&ingr=Burger%20King`,
-	headers: {
-		'Content-Type': 'application/json',
-	},
-});
+export const useFoodApi = () => {
+	const [recipes, setRecipes] = useState<recipeResponseProps>();
+	const [error, setError] = useState('');
 
-export default foodDB;
+	const getData = async (query: string) => {
+		try {
+			const { data } = await recipeDB.get('', {
+				params: {
+					q: query,
+				},
+			});
+			setRecipes(data);
+		} catch (error) {
+			setError(error.message);
+		}
+	};
+
+	return { getData, recipes, error };
+};
