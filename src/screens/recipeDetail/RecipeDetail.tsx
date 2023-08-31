@@ -14,7 +14,6 @@ const options = [
 const RecipeDetail = ({ route }) => {
   const [switchView, setSwitchView] =
     useState<RecipeDetailsOptions>("ingredients");
-  console.log(route.params?.recipe?.totalNutrients);
 
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
