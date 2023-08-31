@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import styles from './CategoryStyle';
+import { AppContext } from '../../context/AppContext';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
 	title: string;
 	SvgComponent: any;
+	type?: 'mealType' | 'dishType';
 };
 
-export const Category = ({ title, SvgComponent }: Props) => {
+export const Category = ({ title, SvgComponent, type }: Props) => {
+	const { changeMealType } = useContext(AppContext);
+	const navigator = useNavigation();
 	const onPress = () => {
-		// TODO: Cambiar listado de comida por el listado de la categoría
-		console.log('Category pressed');
+		if (type === 'mealType') {
+			changeMealType(title);
+			navigator.navigate('Home' as never);
+		}
 	};
 
 	return (
