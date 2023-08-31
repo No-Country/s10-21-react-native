@@ -66,10 +66,7 @@ const Home = () => {
           renderItem={({ item }) => {
             return (
               <CardHome
-                calories={item.recipe.calories}
-                tittle={item.recipe.label}
-                totalTime={item.recipe.totalTime}
-                imageUrl={item.recipe.image}
+                {...item}
               />
             );
           }}

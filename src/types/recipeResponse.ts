@@ -1,9 +1,8 @@
-
-interface Recipe {
+export interface RecipeProps {
   uri: string;
   label: string;
   image: string;
-  images: {}
+  images: {};
   source: string;
   url: string;
   shareAs: string;
@@ -37,8 +36,8 @@ interface Recipe {
   }[];
 }
 
-interface Hits {
-  recipe: Recipe;
+export interface HitsProps {
+  recipe: RecipeProps;
 }
 
 export interface recipeResponseProps {
@@ -46,5 +45,5 @@ export interface recipeResponseProps {
   to: number;
   count: number;
   _links: any;
-  hits: Hits[];
+  hits: HitsProps[];
 }
