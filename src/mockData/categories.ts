@@ -5,6 +5,7 @@ import Lunch from '../assets/icons/Category-Lunch.svg';
 import Pastas from '../assets/icons/Category-Pastas.svg';
 import Salads from '../assets/icons/Category-Salads.svg';
 import Soups from '../assets/icons/Category-Soups.svg';
+import Teatime from '../assets/icons/Category-Teatime.svg';
 
 export interface Category {
 	id: number;
@@ -20,32 +21,22 @@ export const categoryList: Category[] = [
 	},
 	{
 		id: 2,
+		title: 'Dinner',
+		SvgComponent: Desserts,
+	},
+	{
+		id: 3,
 		title: 'Lunch',
 		SvgComponent: Lunch,
 	},
 	{
-		id: 3,
-		title: 'Desserts',
-		SvgComponent: Desserts,
-	},
-	{
 		id: 4,
-		title: 'Drinks',
+		title: 'Snack',
 		SvgComponent: Drinks,
 	},
 	{
 		id: 5,
-		title: 'Pastas',
-		SvgComponent: Pastas,
-	},
-	{
-		id: 6,
-		title: 'Salads',
-		SvgComponent: Salads,
-	},
-	{
-		id: 7,
-		title: 'Soups',
-		SvgComponent: Soups,
+		title: 'Teatime',
+		SvgComponent: Teatime,
 	},
 ];

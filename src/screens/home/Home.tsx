@@ -1,39 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native';
 import SearchHeader from '../../components/searchHeader/SearchHeader';
 import { styles } from './homeStyles';
 import CardHome from '../../components/cardRecipe/CardRecipe';
 import { useFoodApi } from '../../hooks/useFoodApi';
+import { AppContext } from '../../context/AppContext';
 
 const Home = () => {
 	const [query, setQuery] = useState('');
-	const { getData, recipes, error } = useFoodApi();
+	const { queries } = useContext(AppContext);
+	const { getData, recipes, error, isLoading } = useFoodApi();
 
 	const getUserQueary = (text: string) => {
 		setQuery(text);
 	};
 
-	// const [recipes, setRecipes] = useState<recipeResponseProps>();
+	// useEffect(() => {
+	// 	getData(query);
+	// }, []);
 
 	useEffect(() => {
 		const debounced = setTimeout(() => {
 			getData(query);
 			if (error) {
-				console.log(error);
+				console.log('error', error);
 			} else {
-				console.log(recipes);
+				console.log('recipes loaded');
 			}
 		}, 1000);
 		return () => {
 			clearTimeout(debounced);
 		};
-	}, [query]);
+	}, [query, queries]);
 
 	return (
 		<View style={styles.container}>
 			<SearchHeader getUserQueary={getUserQueary} query={query} />
 
-			{recipes?.hits.length > 0 ? (
+			{!isLoading ? (
 				<FlatList
 					contentContainerStyle={{
 						rowGap: 20,

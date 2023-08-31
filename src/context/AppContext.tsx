@@ -1,34 +1,55 @@
 import React, { createContext, useMemo, useState } from 'react';
 
-export const AppContext = createContext({});
+interface Queries {
+	cuisineType: string;
+	mealType: string;
+	imageSize: string;
+}
+
+interface AppContextProps {
+	queries: Queries;
+	changeCuisineType: (cuisineType: string) => void;
+	changeMealType: (mealType: string) => void;
+	changeImageSize: (imageSize: string) => void;
+	returnCleanQueries: () => {};
+}
+
+export const AppContext = createContext({} as AppContextProps);
+
+const initialQueries = {
+	cuisineType: 'South American',
+	mealType: '',
+	imageSize: 'REGULAR',
+};
 
 export const AppContextProvider = ({ children }: any) => {
-	const [foodList, setFoodList] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const [searchQuery, setSearchQuery] = useState('');
+	const [queries, setQueries] = useState<Queries>(initialQueries);
 
-	const fetchFoodList = async () => {
-		setIsLoading(true);
-		try {
-			const response = await fetch('https://edamam-recipe-search.p.rapidapi.com/api/recipes/v2');
-			const data = await response.json();
-			setFoodList(data.meals);
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setIsLoading(false);
-		}
+	const changeCuisineType = (cuisineType: string) => {
+		setQueries({ ...queries, cuisineType });
+	};
+
+	const changeMealType = (mealType: string) => {
+		setQueries({ ...queries, mealType });
+	};
+
+	const changeImageSize = (imageSize: string) => {
+		setQueries({ ...queries, imageSize });
+	};
+
+	const returnCleanQueries = () => {
+		return Object.fromEntries(Object.entries(queries).filter(([_, v]) => v !== ''));
 	};
 
 	const contextValue = useMemo(() => {
 		return {
-			foodList,
-			isLoading,
-			searchQuery,
-			setSearchQuery,
-			fetchFoodList,
+			queries,
+			changeCuisineType,
+			changeMealType,
+			changeImageSize,
+			returnCleanQueries,
 		};
-	}, [foodList, isLoading, searchQuery, setSearchQuery]);
+	}, [queries]);
 
 	return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
 };

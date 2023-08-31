@@ -16,6 +16,7 @@ export const CategoriesScreen = () => {
 							key={category.id}
 							title={category.title}
 							SvgComponent={category.SvgComponent}
+							type='mealType'
 						/>
 					);
 				})}
