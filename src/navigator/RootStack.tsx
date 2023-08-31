@@ -9,12 +9,14 @@ import { Fontisto } from '@expo/vector-icons';
 import { CategoriesScreen } from '../screens/CategoriesScreen'
 import Home from '../screens/home/Home'
 import Favorites from '../screens/Favorites'
-
+import AuthScreen from "../screens/AuthScreen/AuthScreen"
+import HomeScreen from '../screens/home/Home';
 export type RootStackParamList = {
   Home:undefined;
   SavedRecipes:undefined;
   Favorites:undefined;
-  AddRecipe:undefined
+  AddRecipe:undefined;
+  AuthScreen:undefined;
 };
 
 const Tab= createMaterialBottomTabNavigator<RootStackParamList>();
@@ -23,7 +25,7 @@ export default function RootStack() {
   return (
     <NavigationContainer>
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home}  options={{
+      <Tab.Screen name="Home" component={HomeScreen}  options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
             <Ionicons name="home" color={color} size={26} />
@@ -45,9 +47,9 @@ export default function RootStack() {
           tabBarLabel: 'Add',
           tabBarIcon: ({ color }) => (
             <Ionicons name="ios-add-sharp" size={24} color={color} />
-          ),
-        }}/>
+            ),
+          }}/>
     </Tab.Navigator>
-  </NavigationContainer>
+    </NavigationContainer>
   )
 }

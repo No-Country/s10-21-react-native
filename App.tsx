@@ -1,25 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import RootStack from './src/navigator/RootStack';
+import { StyleSheet, Text, View, Button, Image} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import RootStack from './src/navigator/RootStack';
+import { StatusBar } from 'expo-status-bar';
+import AuthScreen from './src/screens/AuthScreen/AuthScreen';
+
+
 
 export default function App() {
-	return (
+		return (
 		<SafeAreaProvider>
-			<View style={styles.container}>
-				<StatusBar style='auto' />
-			</View>
 			<RootStack />
 		</SafeAreaProvider>
 	);
 }
-
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#fff',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		paddingHorizontal: 30,
+	  backgroundColor: "#fff",
+	  alignItems: "center",
+	  justifyContent: "center",
 	},
-});
+  });
