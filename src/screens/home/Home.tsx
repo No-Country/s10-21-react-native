@@ -15,10 +15,6 @@ const Home = () => {
 		setQuery(text);
 	};
 
-	// useEffect(() => {
-	// 	getData(query);
-	// }, []);
-
 	useEffect(() => {
 		const debounced = setTimeout(() => {
 			getData(query);
@@ -51,10 +47,7 @@ const Home = () => {
 					renderItem={({ item }) => {
 						return (
 							<CardHome
-								calories={item.recipe.calories}
-								tittle={item.recipe.label}
-								totalTime={item.recipe.totalTime}
-								imageUrl={item.recipe.image}
+								{...item}
 							/>
 						);
 					}}

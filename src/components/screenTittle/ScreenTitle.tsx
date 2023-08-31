@@ -1,6 +1,7 @@
-import { View, Text, TouchableHighlight } from "react-native";
+import { View, Text, TouchableHighlight, TouchableOpacity } from "react-native";
 import { style } from "./screenTitleStyle";
 import { BackArrow } from "../../../assets/Icons/SVGicons";
+import { useNavigation } from "@react-navigation/native";
 
 type titleProps = {
   text: string;
@@ -8,13 +9,20 @@ type titleProps = {
 };
 
 const ScreenTitle = ({ text, backButton = false }: titleProps) => {
+  const navigation = useNavigation();
   return (
     <View style={style.container}>
       {backButton && (
-        <TouchableHighlight style={style.backButton}>
-          <BackArrow color="#fff" size="32"/>
-        </TouchableHighlight>
+        <TouchableOpacity
+          style={style.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <View>
+            <BackArrow color="#fff" size="32" />
+          </View>
+        </TouchableOpacity>
       )}
+      
       <Text style={style.textHeader}>{text}</Text>
     </View>
   );
