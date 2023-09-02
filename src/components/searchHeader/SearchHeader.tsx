@@ -9,6 +9,7 @@ import ScreenTitle from "../screenTittle/ScreenTitle";
 import { style } from "./searchHeaderStyles";
 import { CancelIcon, SearchIcon } from "../../../assets/Icons/SVGicons";
 import { useRef, useState } from "react";
+import { colors } from "../../utils/colors";
 
 interface SearchHeaderProps {
   getUserQueary: (text: string) => void;
@@ -33,12 +34,14 @@ const SearchHeader = ({ getUserQueary, query }: SearchHeaderProps) => {
           onBlur={() => setIsFocused(false)}
         >
           <View style={[style.inputContainer, isFocused && style.isfocused]}>
-            <SearchIcon />
+            <SearchIcon color={colors.purple}/>
             <TextInput
               ref={textInputRef}
               style={style.input}
               placeholder="Type your ingredients"
+              placeholderTextColor={colors.purpleLight}
               onChangeText={getUserQueary}
+              cursorColor={colors.purple}
             />
             {query.length > 1 && (
               <TouchableOpacity onPress={resetInput}>

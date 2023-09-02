@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   cardContainer: {
@@ -45,11 +46,11 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
   dataText: {
-    color: "#868686",
+    color: colors.purpleLight,
     marginLeft: 2,
   },
   dataSeparator: {
-    color: "#868686",
+    color: colors.purpleLight,
     marginHorizontal: 5,
   },
 });

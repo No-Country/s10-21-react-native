@@ -23,7 +23,6 @@ export const useFoodApi = () => {
 		} catch (error) {
 			setError(error.message);
 		}
-		console.log('get data', searchQuery, returnCleanQueries());
 	};
 
 	return { getData, recipes, error, isLoading };
