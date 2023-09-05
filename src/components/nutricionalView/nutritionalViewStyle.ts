@@ -29,12 +29,9 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     color: "#fff",
   },
-  containerNutrientsData: {
-    flexDirection: "row",
-    marginBottom: 5
-  },
-  nutrientLabel: {
-    fontWeight: "600",
+
+  tableHeading: {
+    textAlign: 'right',
 },
   nutrientValue: {},
 });

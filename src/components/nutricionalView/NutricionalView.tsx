@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { totalNutrientsProps } from "../../types/recipeResponse";
 import { styles } from "./nutritionalViewStyle";
+import { DataTable } from "react-native-paper";
 
 interface NutricionalViewProps {
   totalNutrients: totalNutrientsProps;
@@ -20,12 +21,11 @@ const NutricionalView = ({
     nutrientCode: key,
     ...totalNutrients[key],
   }));
-  console.log(nutrientArray);
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.labelHeading}>Labels:</Text>
+        <Text style={styles.labelHeading}>Health label:</Text>
         <View style={styles.labelContainer}>
           {healthLabels.sort().map((healthLabel, index) => (
             <Text key={index} style={styles.labelPill}>
@@ -46,17 +46,38 @@ const NutricionalView = ({
       )}
 
       <View>
-        <Text style={styles.labelHeading}>Nutrients:</Text>
+        <Text style={styles.labelHeading}>Total nutrients:</Text>
         <View>
-          {nutrientArray.map((totalNutrient, index) => (
-            <View key={index} style={styles.containerNutrientsData}>
-              <Text style={styles.nutrientLabel}>{totalNutrient.label}: </Text>
-              <Text style={styles.nutrientValue}>
-                {totalNutrient.quantity.toFixed()}
-                {totalNutrient.unit}
-              </Text>
-            </View>
-          ))}
+          <DataTable>
+            <DataTable.Header>
+              <DataTable.Title
+                textStyle={{ width: "100%", fontWeight: "800", fontSize: 20 }}
+              >
+                Label
+              </DataTable.Title>
+              <DataTable.Title
+                textStyle={{
+                  textAlign: "right",
+                  width: "100%",
+                  fontWeight: "800",
+                  fontSize: 20,
+                }}
+              >
+                Valor
+              </DataTable.Title>
+            </DataTable.Header>
+
+            {nutrientArray
+              .sort((a, b) => a.label.localeCompare(b.label))
+              .map((item) => (
+                <DataTable.Row key={item.nutrientCode}>
+                  <DataTable.Cell>{item.label}</DataTable.Cell>
+                  <DataTable.Cell numeric>
+                    {item.quantity.toFixed()}
+                  </DataTable.Cell>
+                </DataTable.Row>
+              ))}
+          </DataTable>
         </View>
       </View>
     </View>

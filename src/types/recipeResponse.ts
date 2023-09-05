@@ -33,7 +33,7 @@ export interface RecipeProps {
   cuisineType: string[];
   mealType: string[];
   dishType: string[];
-  totalNutrients: totalNutrientsProps;
+  totalNutrients: totalNutrientsProps;  
   totalDaily: {
     [key: string]: { label: string; quantity: number; unit: string };
   };

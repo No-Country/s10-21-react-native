@@ -1,18 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator, Text } from "react-native";
 import SearchHeader from "../../components/searchHeader/SearchHeader";
 import { styles } from "./homeStyles";
 import CardHome from "../../components/cardRecipe/CardRecipe";
 import { useFoodApi } from "../../hooks/useFoodApi";
 import { AppContext } from "../../context/AppContext";
+import HomeFooter from "../../homeFooter/HomeFooter";
+import { colors } from "../../utils/colors";
 
 const Home = () => {
   const [query, setQuery] = useState("");
+
   const { queries } = useContext(AppContext);
+
   const { getData, recipes, error, isLoading } = useFoodApi();
 
   const getUserQueary = (text: string) => {
     setQuery(text);
+  };
+
+  const resetUserQuery = () => {
+    setQuery("");
   };
 
   useEffect(() => {
@@ -28,10 +36,15 @@ const Home = () => {
       clearTimeout(debounced);
     };
   }, [query, queries]);
+ 
 
   return (
     <View style={styles.container}>
-      <SearchHeader getUserQueary={getUserQueary} query={query} />
+      <SearchHeader
+        getUserQueary={getUserQueary}
+        resetUserQuery={resetUserQuery}
+        query={query}
+      />
 
       {!isLoading ? (
         <FlatList
@@ -50,9 +63,10 @@ const Home = () => {
           keyExtractor={(item) => item?.recipe?.uri}
           numColumns={2}
           horizontal={false}
+          ListFooterComponent={<HomeFooter />}
         />
       ) : (
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" color={colors.purple}/>
       )}
     </View>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import ScreenTitle from "../../components/screenTittle/ScreenTitle";
 import { styles } from "./recipeDetailStyles";
 import { ClockIcon } from "../../../assets/Icons/SVGicons";
@@ -7,8 +7,8 @@ import SwitchSelector from "react-native-switch-selector";
 import { RecipeDetailsOptions } from "../../types/recipeDetailsSwitch";
 import { RecipeProps } from "../../types/recipeResponse";
 import { colors } from "../../utils/colors";
-import IngredientsList from "../../components/ingredientsList/IngredientsList";
-import NutricionalView from "../../components/nutricionalView/NutricionalView";
+import { ReturnSwitchView } from "../../utils/SwitchDetailView";
+import { A } from "@expo/html-elements";
 
 const options = [
   { label: "Ingredients", value: "ingredients" },
@@ -18,7 +18,6 @@ const options = [
 const RecipeDetail = ({ route }) => {
   const [switchView, setSwitchView] =
     useState<RecipeDetailsOptions>("ingredients");
-
   const {
     calories,
     totalNutrients,
@@ -29,6 +28,8 @@ const RecipeDetail = ({ route }) => {
     cautions,
     healthLabels,
     dietLabels,
+    url,
+    uri,
   } = route.params?.recipe as RecipeProps;
 
   const caloriesData = calories ? `${calories?.toFixed()} Kcal` : "N/A";
@@ -45,28 +46,8 @@ const RecipeDetail = ({ route }) => {
     ? `${totalNutrients?.FATRN?.quantity.toFixed()}g`
     : "N/A";
 
-  const returnSwitchView = () => {
-    switch (switchView) {
-      case "ingredients":
-        return <IngredientsList ingredients={ingredients} />;
-
-      case "moreInfo":
-        return (
-          <NutricionalView
-            cautions={cautions}
-            totalNutrients={totalNutrients}
-            dietLabels={dietLabels}
-            healthLabels={healthLabels}
-          />
-        );
-
-      default:
-        break;
-    }
-  };
-
   useEffect(() => {
-    returnSwitchView;
+    ReturnSwitchView;
   }, [switchView]);
 
   return (
@@ -144,9 +125,20 @@ const RecipeDetail = ({ route }) => {
             hasPadding
             accessibilityLabel="gender-switch-selector"
           />
-          {returnSwitchView()}
+          {ReturnSwitchView({
+            cautions,
+            dietLabels,
+            healthLabels,
+            ingredients,
+            switchView,
+            totalNutrients,
+          })}
         </View>
       </View>
+      <TouchableOpacity style={styles.linkContainer}>
+        <Image style={styles.touchIcon} source={require("../../../assets/Icons/touchIcon.png")} />
+        <A href={url} style={styles.Link}>See instructions here</A>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

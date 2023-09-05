@@ -54,7 +54,26 @@ export const styles = StyleSheet.create({
   },
   switchContainer: {
     marginTop: 20,
-    gap: 20
+    gap: 20,
+  },
+  linkContainer:{
+    position: "relative",
+    borderWidth: 3,
+    borderColor: colors.orange,
+    borderStyle: "dashed",
+    borderRadius: 10,
+    backgroundColor: colors.orangeLight,
+    marginHorizontal: 30,
+    marginBottom: 20,
   },
 
+  Link: {
+    textAlign: "center",
+    padding: 30,
+    fontSize: 20,
+  },
+  touchIcon: {
+    position: "absolute",
+    left: '65%'
+  }
 });
