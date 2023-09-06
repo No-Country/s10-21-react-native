@@ -1,3 +1,18 @@
+export interface IngredientsProps {
+  food: string;
+  foodCategory: string;
+  foodId: string;
+  image: string;
+  measure: string;
+  quantity: number;
+  text: string;
+  weight: number;
+}
+
+export interface totalNutrientsProps {
+  [key: string]: { label: string; quantity: number; unit: string };
+}
+
 export interface RecipeProps {
   uri: string;
   label: string;
@@ -11,16 +26,14 @@ export interface RecipeProps {
   healthLabels: string[];
   cautions: string[];
   ingredientLines: string[];
-  ingredients: { text: string; weight: number }[];
+  ingredients: IngredientsProps[];
   calories: number;
   totalWeight: number;
   totalTime: number;
   cuisineType: string[];
   mealType: string[];
   dishType: string[];
-  totalNutrients: {
-    [key: string]: { label: string; quantity: number; unit: string };
-  };
+  totalNutrients: totalNutrientsProps;  
   totalDaily: {
     [key: string]: { label: string; quantity: number; unit: string };
   };

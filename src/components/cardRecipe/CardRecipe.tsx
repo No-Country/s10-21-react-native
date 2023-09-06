@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamsList } from "../../types/homeStackParamsList";
 import { HitsProps } from "../../types/recipeResponse";
+import { colors } from "../../utils/colors";
 
 const CardHome = ({ ...data }: HitsProps) => {
   
@@ -17,7 +18,7 @@ const CardHome = ({ ...data }: HitsProps) => {
     >
       <View style={styles.imgContainer}>
         <TouchableOpacity style={styles.favoriteIcon}>
-          <HeartIcon color="#676767" />
+          <HeartIcon color={colors.purpleLight} />
         </TouchableOpacity>
         <Image
           resizeMode="cover"

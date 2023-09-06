@@ -8,20 +8,22 @@ import {
 import ScreenTitle from "../screenTittle/ScreenTitle";
 import { style } from "./searchHeaderStyles";
 import { CancelIcon, SearchIcon } from "../../../assets/Icons/SVGicons";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { colors } from "../../utils/colors";
 
 interface SearchHeaderProps {
   getUserQueary: (text: string) => void;
+  resetUserQuery: () => void;
   query: string;
 }
 
-const SearchHeader = ({ getUserQueary, query }: SearchHeaderProps) => {
+const SearchHeader = ({
+  getUserQueary,
+  resetUserQuery,
+  query,
+}: SearchHeaderProps) => {
   const [isFocused, setIsFocused] = useState(false);
-  const textInputRef = useRef(null);
 
-  const resetInput = () => {
-    textInputRef.current.clear();
-  };
   return (
     <View>
       <ScreenTitle text="Search" />
@@ -33,15 +35,17 @@ const SearchHeader = ({ getUserQueary, query }: SearchHeaderProps) => {
           onBlur={() => setIsFocused(false)}
         >
           <View style={[style.inputContainer, isFocused && style.isfocused]}>
-            <SearchIcon />
+            <SearchIcon color={colors.purple} />
             <TextInput
-              ref={textInputRef}
               style={style.input}
               placeholder="Type your ingredients"
+              placeholderTextColor={colors.purpleLight}
               onChangeText={getUserQueary}
+              cursorColor={colors.purple}
+              value={query}
             />
             {query.length > 1 && (
-              <TouchableOpacity onPress={resetInput}>
+              <TouchableOpacity onPress={resetUserQuery}>
                 <CancelIcon />
               </TouchableOpacity>
             )}

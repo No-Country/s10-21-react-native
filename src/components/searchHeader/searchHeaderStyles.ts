@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../utils/colors';
 
 export const style = StyleSheet.create({
     container:{
@@ -26,11 +27,10 @@ export const style = StyleSheet.create({
         
     },
     isfocused:{
-        borderColor: '#23FCB6',
+        borderColor: colors.purple,
     },
     input:{
         flex: 1,
-        // overflow: 'hidden',
         paddingHorizontal: 5,
     }
 })

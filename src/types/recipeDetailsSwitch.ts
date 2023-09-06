@@ -1,1 +1,1 @@
-export type RecipeDetailsOptions = "ingredients" | "instructions";
+export type RecipeDetailsOptions = "ingredients" | "moreInfo";
