@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from "react-native";
-import ScreenTitle from "../screenTittle/ScreenTitle";
+import ScreenTitle from "../screenTittle/ScreenTittle";
 import { style } from "./searchHeaderStyles";
 import { CancelIcon, SearchIcon } from "../../../assets/Icons/SVGicons";
 import { useState } from "react";

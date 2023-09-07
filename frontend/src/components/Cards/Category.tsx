@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { AppContext } from '../../context/AppContext';
 import { useNavigation } from '@react-navigation/native';
-import styles from './categoryStyle';
+import styles from './CategoryStyle';
+
 
 type Props = {
 	title: string;

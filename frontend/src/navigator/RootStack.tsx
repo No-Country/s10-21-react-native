@@ -2,18 +2,19 @@ import React from "react";
 import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 import { NavigationContainer } from "@react-navigation/native";
 
-import AddRecipe from "../screens/AddRecipe";
 import { Ionicons } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
 import { CategoriesScreen } from "../screens/CategoriesScreen";
 import Favorites from "../screens/Favorites";
 import { HomeStackScreen } from "./HomeStack";
+import NewRecipeForm from "../screens/newRecipeForm/NewRecipeForm";
+import MyRecipes from "./MyRecipeTopTab";
 
 export type RootStackParamList = {
   Home: undefined;
   SavedRecipes: undefined;
   Favorites: undefined;
-  AddRecipe: undefined;
+  NewRecipeForm: undefined;
 };
 
 const Tab = createMaterialBottomTabNavigator<RootStackParamList>();
@@ -53,8 +54,8 @@ export default function RootStack() {
           }}
         />
         <Tab.Screen
-          name="AddRecipe"
-          component={AddRecipe}
+          name="NewRecipeForm"
+          component={MyRecipes}
           options={{
             tabBarLabel: "Add",
             tabBarIcon: ({ color }) => (
