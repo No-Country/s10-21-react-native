@@ -1,6 +1,6 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import React, { useState } from "react";
+import { Image, ScrollView, Text, View } from "react-native";
+import { TextInput, Button, Divider } from "react-native-paper";
 import ScreenTittle from "../../components/screenTittle/ScreenTittle";
 import { styles } from "./newRecipeFormStyle";
 import { z } from "zod";
@@ -8,14 +8,27 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { colors } from "../../utils/colors";
 import Toast from "react-native-toast-message";
+import * as ImagePicker from "expo-image-picker";
+import * as FileSystem from "expo-file-system";
+import { SPSheet } from "react-native-popup-confirm-toast";
+import { CameraIcon } from "../../../assets/Icons/SVGicons";
+import CameraImage from "../../../assets/Icons/cameraIcon.png";
+import ButtonModal from "../../components/bottonModal/ButtonModal";
+
+const imgDir = FileSystem.documentDirectory + "image/";
+
+const checkDirExist = async () => {
+  const dirInfo = await FileSystem.getInfoAsync(imgDir);
+  if (!dirInfo.exists) {
+    await FileSystem.makeDirectoryAsync(imgDir, { intermediates: true });
+  }
+};
 
 const NewRecipeForm = () => {
-  const [text, setText] = React.useState("");
-
   const SignUpSchema = z.object({
     name: z.string().min(5).max(20),
     ingredients: z.array(z.string()).nonempty(),
-    description: z.string().min(3).max(20),
+    description: z.string().min(3).max(500),
   });
 
   type SignUpSchemaType = z.infer<typeof SignUpSchema>;
@@ -34,6 +47,40 @@ const NewRecipeForm = () => {
     },
   });
 
+  const selectImage = async (useLibrary: boolean) => {
+    let result: ImagePicker.ImagePickerResult;
+
+    const options: ImagePicker.ImagePickerOptions = {
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 0.75,
+      selectionLimit: 1,
+    };
+
+    if (useLibrary) {
+      result = await ImagePicker.launchImageLibraryAsync(options);
+    } else {
+      await ImagePicker.requestCameraPermissionsAsync();
+
+      result = await ImagePicker.launchCameraAsync(options);
+    }
+
+    if (!result.canceled) {
+      saveImage(result.assets[0].uri);
+    }
+  };
+
+  const [imageRecipe, setImageRecipe] = useState("");
+
+  const saveImage = async (uri: string) => {
+    await checkDirExist();
+    const fileName = new Date().getTime() + ".jpg";
+    const dest = imgDir + fileName;
+    await FileSystem.copyAsync({ from: uri, to: dest });
+    setImageRecipe(dest);
+  };
+
   const onSubmit = (data: SignUpSchemaType) => {
     console.log(data);
     Toast.show({
@@ -45,9 +92,23 @@ const NewRecipeForm = () => {
     reset();
   };
 
+  const showPopUp = () => {
+    const spSheet = SPSheet;
+    spSheet.show({
+      component: () =>
+        ButtonModal({
+          openCamera: () => selectImage(false),
+          openLibrary: () => selectImage(true),
+          cancel: () => spSheet.hide(),
+        }),
+      dragFromTopOnly: true,
+      height: 260,
+    });
+  };
+
   return (
-    <>
-      <ScreenTittle text="Add you recipe!" backButton={true} />
+    <ScrollView style={{ backgroundColor: "#fff" }}>
+      <ScreenTittle text="Add you recipe!" />
       <View style={styles.formContainer}>
         <View style={styles.inputContainer}>
           <Controller
@@ -118,6 +179,8 @@ const NewRecipeForm = () => {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
+                multiline={true}
+                numberOfLines={6}
               />
             )}
             name="description"
@@ -128,8 +191,29 @@ const NewRecipeForm = () => {
             </Text>
           )}
         </View>
+        {!imageRecipe && (
+          <Button mode="contained-tonal" icon="camera" onPress={showPopUp}>
+            Add photo
+          </Button>
+        )}
+        {imageRecipe && (
+          <View style={styles.photoContainer}>
+            <Image style={styles.photo} source={{ uri: imageRecipe }} />
+            <Button
+              icon="delete"
+              buttonColor="red"
+              textColor="#fff"
+              labelStyle={{ fontSize: 18 }}
+              onPress={() => setImageRecipe("")}
+            >
+              Delete photo
+            </Button>
+          </View>
+        )}
+        <Divider />
         <Button
           mode="contained"
+          labelStyle={{ fontSize: 18 }}
           buttonColor={colors.purple}
           onPress={handleSubmit(onSubmit)}
         >
@@ -138,13 +222,16 @@ const NewRecipeForm = () => {
         <Button
           mode="contained-tonal"
           buttonColor={colors.orangeLight}
-          onPress={() => reset()}
+          onPress={() => {
+            reset(), setImageRecipe("");
+          }}
+          labelStyle={{ fontSize: 18 }}
         >
           Reset
         </Button>
       </View>
       <Toast />
-    </>
+    </ScrollView>
   );
 };
 

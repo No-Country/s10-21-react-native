@@ -1,4 +1,4 @@
-import { HitsProps, RecipeProps } from "./recipeResponse";
+import { HitsProps } from "./recipeResponse";
 
 export type HomeStackParamsList = {
     RecipeList: undefined;
