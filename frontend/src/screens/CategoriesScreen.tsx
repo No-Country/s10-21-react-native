@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { categoryList } from '../mockData/categories';
-import { Category } from '../components/cards/Category';
-import ScreenTitle from '../components/screenTittle/ScreenTitle';
+import ScreenTitle from '../components/screenTittle/ScreenTittle';
+import { Category } from '../components/Cards/Category';
 
 export const CategoriesScreen = () => {
 	return (
