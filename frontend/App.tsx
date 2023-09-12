@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createStackNavigator } from '@react-navigation/stack';
 import RootStack from './src/navigator/RootStack';
+
 const Stack = createStackNavigator();
 
 export default function App() {

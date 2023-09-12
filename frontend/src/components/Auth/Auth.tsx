@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, ScrollView, Text } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import {
 	GoogleSignin,
 	GoogleSigninButton,
 	statusCodes,
 } from '@react-native-google-signin/google-signin';
+import { useAppApi } from '../../hooks/useAppApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -15,22 +17,16 @@ GoogleSignin.configure({
 });
 
 export default function Auth() {
-	const [token, setToken] = useState('');
-	//androidClientId:"197093024995-ohnc4tcbqu3v99g36kursr9bapv59ok2.apps.googleusercontent.com",
-	//webClientId:"197093024995-2ji9cs8uvgj4119vrjahvppep8snrvga.apps.googleusercontent.com"
-
-	// useEffect(() => {
-	// }, []);
+	const { token, login } = useAppApi();
 
 	const signIn = async () => {
 		try {
-			console.log('a');
 			const sing = await GoogleSignin.hasPlayServices();
 			console.log(sing);
+			// TODO: send token to backend
 			const data = await GoogleSignin.signIn();
-			// setToken(idToken);
 			console.log(data);
-			console.log('SIUUUUU');
+			await AsyncStorage.setItem('token', data.idToken);
 		} catch (error) {
 			if (error.code === statusCodes.SIGN_IN_CANCELLED) {
 				console.log('user cancelled the login flow');
@@ -41,15 +37,6 @@ export default function Auth() {
 			} else {
 				console.log('some other error happened' + JSON.stringify(error));
 			}
-		}
-	};
-
-	const signOut = async () => {
-		try {
-			await GoogleSignin.signOut();
-			setToken(''); // Remember to remove the user from your app's state as well
-		} catch (error) {
-			console.error(error);
 		}
 	};
 
@@ -64,7 +51,6 @@ export default function Auth() {
 						onPress={signIn}
 					/>
 				</View>
-				<Text>ola</Text>
 			</ScrollView>
 		</View>
 	);
