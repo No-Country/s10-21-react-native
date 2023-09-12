@@ -34,6 +34,7 @@ export const createFavourite = async (req: Request, res: Response) => {
 			href,
 			calories,
 			totalTime,
+			user: req.body.user._id,
 		};
 
 		const newFavourite = new Favourites(data);

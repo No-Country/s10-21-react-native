@@ -21,6 +21,11 @@ const FavouritesSchema = new Schema({
 		type: String,
 		required: [true, 'The cooking time is required'],
 	},
+	user: {
+		type: Schema.Types.ObjectId,
+		ref: 'User',
+		required: true,
+	},
 });
 
 FavouritesSchema.methods.toJSON = function () {
