@@ -11,25 +11,42 @@
 		<ul>
 			<li>POST: /api/google</li>
 		</ul>
-		<h2>recipes</h2>
+		<h2>Recipes</h2>
 		<ul>
-			<li>en desarrollo</li>
+			<li>GET ALL: /api/recipes/</li>
+			<ul>
+				<li>
+					body: {
+					<br />
+					&nbsp; name: string, <br />
+					&nbsp; ingredients: array<string>, <br />
+					&nbsp; description: string, <br />
+					&nbsp; image: string, (base64) <br />	
+					}
+				</li>
+			</ul>
+			<li>GET ONE: /api/recipes/:id</li>
+			<li>POST: /api/recipes/</li>
+			<li>DELETE: /api/recipes/:id</li>
 		</ul>
 		<h2>favourites</h2>
 		<ul>
-			<li>Get: /</li>
+			<li>GET ALL: /</li>
 			<li>
-				Post: /
+				POST: /
 				<ul>
 					<li>
 						body: { <br />
-						label: string, <br />image: string, <br />href: string, <br />calories: string,
-						<br />totalTime: string <br />
+						&nbsp; label: string, <br />
+						&nbsp; image: string, <br />
+						&nbsp; href: string, <br />
+						&nbsp; calories: string,<br />
+						&nbsp; totalTime: string <br />
 						}
 					</li>
 				</ul>
 			</li>
-			<li>Delete: /id</li>
+			<li>DELETE: /id</li>
 		</ul>
 	</body>
 </html>

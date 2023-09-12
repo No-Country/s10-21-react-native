@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Recipe from '../models/recipe';
 
 export const createRecipe = async (req: Request, res: Response) => {
-	const { name, description, ingredients } = req.body;
+	const { name, description, ingredients, image } = req.body;
 
 	try {
 		const recipe = await Recipe.findOne({ name }).exec();
@@ -17,6 +17,7 @@ export const createRecipe = async (req: Request, res: Response) => {
 			name,
 			description,
 			ingredients,
+			image,
 			user: req.body.user._id,
 		};
 
