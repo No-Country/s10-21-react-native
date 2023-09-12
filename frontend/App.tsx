@@ -1,23 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import AuthScreen from './src/screens/AuthScreen/AuthScreen';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import RootStack from './src/navigator/RootStack';
 const Stack = createStackNavigator();
 
 export default function App() {
 	return (
 		<SafeAreaProvider>
-			<NavigationContainer>
-				<Stack.Navigator
-					initialRouteName='StartScreen'
-					screenOptions={{
-						headerShown: false,
-					}}
-				>
-					<Stack.Screen name='RegisterScreen' component={AuthScreen} />
-				</Stack.Navigator>
-			</NavigationContainer>
+			<RootStack />
 		</SafeAreaProvider>
 	);
 }
