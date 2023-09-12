@@ -56,6 +56,7 @@ const NewRecipeForm = () => {
       aspect: [4, 3],
       quality: 0.75,
       selectionLimit: 1,
+      base64: true,
     };
 
     if (useLibrary) {
@@ -66,12 +67,16 @@ const NewRecipeForm = () => {
       result = await ImagePicker.launchCameraAsync(options);
     }
 
+    // console.log(result.assets[0].base64);;
+
     if (!result.canceled) {
       saveImage(result.assets[0].uri);
+      setbase64(result.assets[0].base64);
     }
   };
 
   const [imageRecipe, setImageRecipe] = useState("");
+  const [base64, setbase64] = useState("");
 
   const saveImage = async (uri: string) => {
     await checkDirExist();
@@ -82,7 +87,6 @@ const NewRecipeForm = () => {
   };
 
   const onSubmit = (data: SignUpSchemaType) => {
-    console.log(data);
     Toast.show({
       type: "success",
       text1: "Done",
