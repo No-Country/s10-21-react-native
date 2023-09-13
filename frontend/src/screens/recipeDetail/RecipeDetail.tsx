@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import ScreenTitle from "../../components/screenTittle/ScreenTitle";
+import ScreenTitle from "../../components/screenTittle/ScreenTittle";
 import { styles } from "./recipeDetailStyles";
 import { ClockIcon } from "../../../assets/Icons/SVGicons";
 import SwitchSelector from "react-native-switch-selector";

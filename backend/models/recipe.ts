@@ -14,6 +14,10 @@ const RecipeSchema = new Schema({
 		type: String,
 		required: [true, 'The description is required'],
 	},
+	image: {
+		type: String,
+		required: false,
+	},
 	user: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',

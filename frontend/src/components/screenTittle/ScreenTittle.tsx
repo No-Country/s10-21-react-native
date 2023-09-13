@@ -1,5 +1,5 @@
 import { View, Text, TouchableHighlight, TouchableOpacity } from "react-native";
-import { style } from "./screenTitleStyle";
+import { style } from "./screenTittleStyle";
 import { BackArrow } from "../../../assets/Icons/SVGicons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,7 +8,7 @@ type titleProps = {
   backButton?: boolean;
 };
 
-const ScreenTitle = ({ text, backButton = false }: titleProps) => {
+const ScreenTittle = ({ text, backButton = false }: titleProps) => {
   const navigation = useNavigation();
   return (
     <View style={style.container}>
@@ -28,4 +28,4 @@ const ScreenTitle = ({ text, backButton = false }: titleProps) => {
   );
 };
 
-export default ScreenTitle;
+export default ScreenTittle;
