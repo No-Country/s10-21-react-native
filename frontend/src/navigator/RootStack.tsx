@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 import { NavigationContainer } from '@react-navigation/native';
 
-import AddRecipe from '../screens/AddRecipe';
 import { Fontisto, Ionicons } from '@expo/vector-icons';
 import { CategoriesScreen } from '../screens/CategoriesScreen';
 import Favorites from '../screens/Favorites';
@@ -12,6 +11,8 @@ import { ToLoginScreen } from '../screens/AuthScreen/ToLoginScreen';
 import AuthScreen from '../screens/AuthScreen/AuthScreen';
 import { UserScreen } from '../screens/UserScreen';
 import { AppContext } from '../context/AppContext';
+import MyRecipes from './MyRecipeTopTab';
+
 export type RootStackParamList = {
 	Home: undefined;
 	SavedRecipes: undefined;
@@ -60,8 +61,8 @@ export default function RootStack() {
 				/>
 
 				<Tab.Screen
-					name='AddRecipe'
-					component={token ? AddRecipe : ToLoginScreen}
+					name='NewRecipeForm'
+					component={token ? MyRecipes : ToLoginScreen}
 					options={{
 						tabBarLabel: 'My Recipes',
 						tabBarIcon: ({ color }) => <Ionicons name='list' size={24} color={color} />,
