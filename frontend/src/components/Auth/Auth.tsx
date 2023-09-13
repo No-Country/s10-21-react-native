@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import {
@@ -7,8 +7,8 @@ import {
 	statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-import { useAppApi } from '../../hooks/useAppApi';
 import { google_client_id } from '@env';
+import { AppContext } from '../../context/AppContext';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -18,7 +18,7 @@ GoogleSignin.configure({
 });
 
 export default function Auth() {
-	const { token, login } = useAppApi();
+	const { getUserData } = useContext(AppContext);
 
 	const signIn = async () => {
 		try {
@@ -26,7 +26,7 @@ export default function Auth() {
 			console.log(sing);
 			// TODO: send token to backend
 			const data = await GoogleSignin.signIn();
-			await login(data.idToken);
+			await getUserData(data.idToken);
 		} catch (error) {
 			if (error.code === statusCodes.SIGN_IN_CANCELLED) {
 				console.log('user cancelled the login flow');
