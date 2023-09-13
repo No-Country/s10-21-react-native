@@ -5,10 +5,12 @@ import { AppContext } from '../context/AppContext';
 export const UserScreen = () => {
 	const { user } = useContext(AppContext);
 	return (
-		<View style={styles.container}>
-			<Text>Bienvenido {user.name} </Text>
-			<Image source={{ uri: user.img }} style={{ width: 200, height: 200 }} />
-		</View>
+		user && (
+			<View style={styles.container}>
+				<Text>Bienvenido {user?.name} </Text>
+				<Image source={{ uri: user?.img }} style={{ width: 200, height: 200 }} />
+			</View>
+		)
 	);
 };
 
