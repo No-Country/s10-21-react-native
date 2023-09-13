@@ -5,10 +5,11 @@ import { HomeStackParamsList } from '../types/homeStackParamsList';
 
 const Stack = createNativeStackNavigator<HomeStackParamsList>();
 
+
 export function HomeStackScreen() {
   return (
     <Stack.Navigator
-      initialRouteName="RecipeList"
+      initialRouteName="SearcherAndList"
       screenOptions={{
         headerShown: false
       }}

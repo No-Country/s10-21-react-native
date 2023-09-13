@@ -8,13 +8,15 @@ import { HitsProps } from "../../types/recipeResponse";
 import { colors } from "../../utils/colors";
 
 const CardHome = ({ ...data }: HitsProps) => {
-  
-  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamsList, 'RecipeDetail'>>();
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<HomeStackParamsList, "RecipeDetail">
+    >();
 
   return (
     <TouchableOpacity
       style={styles.cardContainer}
-      onPress={() => navigation.navigate("RecipeDetail", { ...data }  )}
+      onPress={() => navigation.navigate("RecipeDetail", { ...data })}
     >
       <View style={styles.imgContainer}>
         <TouchableOpacity style={styles.favoriteIcon}>
@@ -41,7 +43,9 @@ const CardHome = ({ ...data }: HitsProps) => {
             <View>
               <FireIcon color="#868686" size="15" />
             </View>
-            <Text style={styles.dataText}>{data?.recipe?.calories.toFixed()} Cal</Text>
+            <Text style={styles.dataText}>
+              {data?.recipe?.calories.toFixed()} Cal
+            </Text>
           </View>
           <Text style={styles.dataSeparator}>-</Text>
           <View style={styles.data}>
