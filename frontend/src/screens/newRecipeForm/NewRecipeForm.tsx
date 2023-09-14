@@ -11,9 +11,10 @@ import Toast from "react-native-toast-message";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 import { SPSheet } from "react-native-popup-confirm-toast";
-import { CameraIcon } from "../../../assets/Icons/SVGicons";
-import CameraImage from "../../../assets/Icons/cameraIcon.png";
 import ButtonModal from "../../components/bottonModal/ButtonModal";
+import appDB from "../../api/appDB";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { mutate } from "swr";
 
 const imgDir = FileSystem.documentDirectory + "image/";
 
@@ -54,7 +55,7 @@ const NewRecipeForm = () => {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 0.75,
+      quality: 0.5,
       selectionLimit: 1,
       base64: true,
     };
@@ -66,8 +67,6 @@ const NewRecipeForm = () => {
 
       result = await ImagePicker.launchCameraAsync(options);
     }
-
-    // console.log(result.assets[0].base64);;
 
     if (!result.canceled) {
       saveImage(result.assets[0].uri);
@@ -86,14 +85,40 @@ const NewRecipeForm = () => {
     setImageRecipe(dest);
   };
 
-  const onSubmit = (data: SignUpSchemaType) => {
-    Toast.show({
-      type: "success",
-      text1: "Done",
-      text2: "New recipe added",
-      position: "bottom",
-    });
+  const onSubmit = async (data: SignUpSchemaType) => {
+    console.log(data);
+
+    const completeData = {
+      ...data,
+      image: base64,
+    };
+
+    const token = await AsyncStorage.getItem("token");
+
+    try {
+      const resp = await appDB.post("/recipe", completeData, {
+        headers: {
+          ["x-token"]: token,
+        },
+      });
+      Toast.show({
+        type: "success",
+        text1: "Done",
+        text2: "New recipe added",
+        position: "bottom",
+      });
+      if (!resp.status) {
+        throw new Error(`Error en la solicitudddd: ${resp.status}`);
+      }
+
+      console.log(resp.status);
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+
     reset();
+    setImageRecipe("");
+    mutate("https://dishdetective.onrender.com/api/recipe");
   };
 
   const showPopUp = () => {
