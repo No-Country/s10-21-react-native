@@ -11,7 +11,7 @@ const AuthScreen = () => (
 			style={styles.image}
 		>
 			<Text style={styles.text}>Dish Detective</Text>
-			{/* <Auth /> */}
+			<Auth />
 		</ImageBackground>
 	</View>
 );
