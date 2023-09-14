@@ -16,7 +16,7 @@ const CardHome = ({ ...data }: HitsProps) => {
 
 	const [isFavorite, setIsFavorite] = useState(false);
 
-	const { favorites, addFavorite } = useContext(AppContext);
+	const { token, favorites, addFavorite } = useContext(AppContext);
 
 	const saveFavorite = (data: HitsProps) => {
 		console.log('Save favorite ' + data._links.self.href);
@@ -50,18 +50,20 @@ const CardHome = ({ ...data }: HitsProps) => {
 			onPress={() => navigation.navigate('RecipeDetail', { ...data })}
 		>
 			<View style={styles.imgContainer}>
-				<TouchableOpacity
-					style={styles.favoriteIcon}
-					//eslint-disable
-					onPress={() => changeFavorite()}
-				>
-					{isFavorite ? (
-						<Ionicons name='ios-heart' size={30} color='red' />
-					) : (
-						<Ionicons name='heart-outline' size={30} color='#c5c5c5' />
-					)}
-					{/* <HeartIcon color={isFavorite() ? '#a83232' : '#000000'} /> */}
-				</TouchableOpacity>
+				{token && (
+					<TouchableOpacity
+						style={styles.favoriteIcon}
+						//eslint-disable
+						onPress={() => changeFavorite()}
+					>
+						{isFavorite ? (
+							<Ionicons name='ios-heart' size={30} color='red' />
+						) : (
+							<Ionicons name='heart-outline' size={30} color='#c5c5c5' />
+						)}
+						{/* <HeartIcon color={isFavorite() ? '#a83232' : '#000000'} /> */}
+					</TouchableOpacity>
+				)}
 				<Image
 					resizeMode='cover'
 					style={styles.image}

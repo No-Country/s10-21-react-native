@@ -61,8 +61,8 @@ export const AppContextProvider = ({ children }: any) => {
 		const response = await login(idTokenGoogle);
 
 		if (response.token) {
-			setToken(response.token);
-			setUser(response.data);
+			// setToken(response.token);
+			// setUser(response.data);
 			// save token to async storage
 			await AsyncStorage.setItem('token', response.token);
 			await AsyncStorage.setItem('user', JSON.stringify(response.data));

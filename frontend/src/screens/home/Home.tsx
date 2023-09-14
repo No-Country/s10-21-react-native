@@ -32,7 +32,7 @@ const Home = () => {
 			} else {
 				console.log('recipes loaded');
 			}
-		}, 2000);
+		}, 1000);
 		return () => {
 			clearTimeout(debounced);
 		};
