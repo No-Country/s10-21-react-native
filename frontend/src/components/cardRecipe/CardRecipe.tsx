@@ -8,7 +8,7 @@ import { HitsProps } from '../../types/recipeResponse';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { Ionicons } from '@expo/vector-icons';
-import Toast from 'react-native-toast-message'
+import Toast from 'react-native-toast-message';
 
 const CardHome = ({ ...data }: HitsProps) => {
 	const navigation =
@@ -89,7 +89,6 @@ const CardHome = ({ ...data }: HitsProps) => {
 						<Text style={styles.dataText}>{data?.recipe?.totalTime} min</Text>
 					</View>
 				</View>
-        <Toast />
 			</View>
 		</TouchableOpacity>
 	);

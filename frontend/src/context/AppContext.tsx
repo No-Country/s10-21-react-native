@@ -76,14 +76,14 @@ export const AppContextProvider = ({ children }: any) => {
 
 	const getAllData = async () => {
 		// obtain data from async storage
-		if (!token) {
-			const tokenStorage = await AsyncStorage.getItem('token');
-			const dataStorage = await AsyncStorage.getItem('user');
-			const data = JSON.parse(dataStorage);
-			// set data to state
-			setToken(tokenStorage);
-			setUser(data);
-		}
+
+		const tokenStorage = await AsyncStorage.getItem('token');
+		const dataStorage = await AsyncStorage.getItem('user');
+		const data = JSON.parse(dataStorage);
+		// set data to state
+
+		setToken(tokenStorage);
+		setUser(data);
 		// get all favorites
 		await updateFavorites();
 	};
