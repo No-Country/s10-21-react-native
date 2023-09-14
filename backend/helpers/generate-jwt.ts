@@ -9,7 +9,7 @@ const generateJWT = (uid: string, userName: string) => {
 			process.env.SECRETORPRIVATEKEY!,
 
 			{
-				expiresIn: '30m',
+				expiresIn: '24h',
 			},
 			(err, token) => {
 				if (err) {
