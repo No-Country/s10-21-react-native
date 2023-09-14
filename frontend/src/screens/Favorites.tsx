@@ -1,35 +1,55 @@
-import { View, Text, StyleSheet } from 'react-native';
-import React, { useContext, useEffect } from 'react';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
+import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
+import CardFavorite from '../components/cardFavorite/CardFavorite';
+import HomeFooter from '../homeFooter/HomeFooter';
 
 export default function Favorites() {
 	const { favorites } = useContext(AppContext);
 
-	useEffect(() => {
-		console.log(favorites);
-	}, [favorites]);
-
 	return (
 		<View style={styles.container}>
-			<Text>Favorites</Text>
-			{Array.isArray(favorites) ? (
-				favorites.map((item) => (
-					<View key={item.label}>
-						<Text>{item.label}</Text>
-					</View>
-				))
-			) : (
-				<Text>No favorites</Text>
-			)}
+			<Text style={styles.title}>Favorites</Text>
+			{
+				<FlatList
+					contentContainerStyle={{
+						rowGap: 20,
+						justifyContent: 'space-between',
+					}}
+					columnWrapperStyle={{
+						justifyContent: 'space-between',
+						paddingHorizontal: 3,
+					}}
+					data={favorites}
+					renderItem={({ item }) => {
+						return <CardFavorite data={item} />;
+					}}
+					keyExtractor={(item) => item.label}
+					numColumns={2}
+					horizontal={false}
+				/>
+			}
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
+		marginTop: 30,
+		paddingHorizontal: 30,
+		marginBottom: 60,
+		height: '100%',
+	},
+	recipeList: {
+		display: 'flex',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+	},
+	title: {
+		marginTop: 20,
+		fontSize: 30,
+		fontWeight: 'bold',
+		marginBottom: 20,
+		textAlign: 'center',
 	},
 });

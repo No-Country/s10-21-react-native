@@ -28,10 +28,12 @@ interface AppContextProps {
 	deleteLoginData: () => void;
 	getUserData: (idTokenGoogle: string) => void;
 	addFavorite: (data: HitsProps) => void;
+	delFavorite: (id: string) => void;
 	updateFavorites: () => void;
 }
 
 export interface favoritesProps {
+	_id?: string;
 	label: string;
 	image: string;
 	href: string;
@@ -52,7 +54,7 @@ export const AppContextProvider = ({ children }: any) => {
 	const [token, setToken] = useState<string | null>(null);
 	const [user, setUser] = useState<User>(null);
 	const [favorites, setFavorites] = useState<favoritesProps[]>([]);
-	const { login, getAllFavorites, postFavorite } = useAppApi();
+	const { login, getAllFavorites, postFavorite, deleteFavorite } = useAppApi();
 
 	const getUserData = async (idTokenGoogle: string) => {
 		const response = await login(idTokenGoogle);
@@ -121,6 +123,18 @@ export const AppContextProvider = ({ children }: any) => {
 		}
 	};
 
+	const delFavorite = async (id: string) => {
+		const response = await deleteFavorite(id, token);
+		if (response.msg === 'Favourite deleted') {
+			await updateFavorites();
+			alert('Receta eliminada de favoritos');
+		}
+		if (response.msg === 'Token expirado' || response.msg === 'Token no válido') {
+			deleteLoginData();
+			alert('Token expirado, por favor vuelve a iniciar sesión');
+		}
+	};
+
 	const changeCuisineType = (cuisineType: string) => {
 		setQueries({ ...queries, cuisineType });
 	};
@@ -151,6 +165,7 @@ export const AppContextProvider = ({ children }: any) => {
 			deleteLoginData,
 			getUserData,
 			addFavorite,
+			delFavorite,
 			updateFavorites,
 		};
 	}, [queries, token, user, favorites]);

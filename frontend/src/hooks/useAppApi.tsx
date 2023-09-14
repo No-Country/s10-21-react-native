@@ -35,9 +35,21 @@ export const useAppApi = () => {
 		}
 	};
 
+	const deleteFavorite = async (id: string, token: string) => {
+		try {
+			const response = await appDB.delete(`/favourites/${id}`, {
+				headers: { ['x-token']: token },
+			});
+			return response.data;
+		} catch (error) {
+			return error.response.data;
+		}
+	};
+
 	return {
 		login,
 		postFavorite,
 		getAllFavorites,
+		deleteFavorite,
 	};
 };
