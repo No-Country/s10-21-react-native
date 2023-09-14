@@ -27,6 +27,7 @@ export default function Favorites() {
 					keyExtractor={(item) => item.label}
 					numColumns={2}
 					horizontal={false}
+					ListFooterComponent={<View style={{padding:10}}></View>}
 				/>
 			}
 		</View>
