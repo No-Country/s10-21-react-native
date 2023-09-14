@@ -86,7 +86,6 @@ const NewRecipeForm = () => {
   };
 
   const onSubmit = async (data: SignUpSchemaType) => {
-    console.log(data);
 
     const completeData = {
       ...data,

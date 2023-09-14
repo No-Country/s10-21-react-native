@@ -43,7 +43,6 @@ export const AppContextProvider = ({ children }: any) => {
 		const dataStorage = await AsyncStorage.getItem('user');
 		const data = JSON.parse(dataStorage);
 		// set data to state
-		console.log(data);
 		setToken(tokenStorage);
 		setUser(data);
 	};
