@@ -11,7 +11,7 @@ const AuthScreen = () => (
 			style={styles.image}
 		>
 			<Text style={styles.text}>Food App</Text>
-			{/* <Auth /> */}
+			<Auth />
 		</ImageBackground>
 	</View>
 );
