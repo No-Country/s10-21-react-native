@@ -2,7 +2,7 @@ import { View, StyleSheet, FlatList, Text } from 'react-native';
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import CardFavorite from '../components/cardFavorite/CardFavorite';
-import HomeFooter from '../homeFooter/HomeFooter';
+import Toast from 'react-native-toast-message';
 
 export default function Favorites() {
 	const { favorites } = useContext(AppContext);
@@ -27,9 +27,10 @@ export default function Favorites() {
 					keyExtractor={(item) => item.label}
 					numColumns={2}
 					horizontal={false}
-					ListFooterComponent={<View style={{padding:10}}></View>}
+					ListFooterComponent={<View style={{ padding: 10 }}></View>}
 				/>
 			}
+			<Toast />
 		</View>
 	);
 }

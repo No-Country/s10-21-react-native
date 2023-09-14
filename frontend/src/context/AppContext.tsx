@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useMemo, useState } from 'react';
 import { useAppApi } from '../hooks/useAppApi';
 import { HitsProps } from '../types/recipeResponse';
+import Toast from 'react-native-toast-message';
 
 interface Queries {
 	cuisineType: string;
@@ -75,12 +76,14 @@ export const AppContextProvider = ({ children }: any) => {
 
 	const getAllData = async () => {
 		// obtain data from async storage
-		const tokenStorage = await AsyncStorage.getItem('token');
-		const dataStorage = await AsyncStorage.getItem('user');
-		const data = JSON.parse(dataStorage);
-		// set data to state
-		setToken(tokenStorage);
-		setUser(data);
+		if (!token) {
+			const tokenStorage = await AsyncStorage.getItem('token');
+			const dataStorage = await AsyncStorage.getItem('user');
+			const data = JSON.parse(dataStorage);
+			// set data to state
+			setToken(tokenStorage);
+			setUser(data);
+		}
 		// get all favorites
 		await updateFavorites();
 	};
@@ -103,11 +106,23 @@ export const AppContextProvider = ({ children }: any) => {
 		const response = await postFavorite(favData, token);
 		if (response.msg === 'Create favourite') {
 			await updateFavorites();
-			alert('Receta guardada en favoritos');
+			// alert('Receta guardada en favoritos');
+			Toast.show({
+				type: 'success',
+				position: 'bottom',
+				text1: 'Done',
+				text2: 'Recipe added to favorites',
+			});
 		}
 		if (response.msg === 'Token expirado' || response.msg === 'Token no válido') {
 			deleteLoginData();
-			alert('Token expirado, por favor vuelve a iniciar sesión');
+			// alert('Token expirado, por favor vuelve a iniciar sesión');
+			Toast.show({
+				type: 'error',
+				position: 'bottom',
+				text1: 'Error',
+				text2: 'Token expired, please login again',
+			});
 		}
 	};
 
@@ -127,11 +142,23 @@ export const AppContextProvider = ({ children }: any) => {
 		const response = await deleteFavorite(id, token);
 		if (response.msg === 'Favourite deleted') {
 			await updateFavorites();
-			alert('Receta eliminada de favoritos');
+			// alert('Receta eliminada de favoritos');
+			Toast.show({
+				type: 'success',
+				position: 'bottom',
+				text1: 'Done',
+				text2: 'Recipe deleted from favorites',
+			});
 		}
 		if (response.msg === 'Token expirado' || response.msg === 'Token no válido') {
 			deleteLoginData();
-			alert('Token expirado, por favor vuelve a iniciar sesión');
+			// alert('Token expirado, por favor vuelve a iniciar sesión');
+			Toast.show({
+				type: 'error',
+				position: 'bottom',
+				text1: 'Error',
+				text2: 'Token expired, please login again',
+			});
 		}
 	};
 

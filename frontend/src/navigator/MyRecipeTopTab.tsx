@@ -1,8 +1,8 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import NewRecipeForm from "../screens/newRecipeForm/NewRecipeForm";
-import UserRecipe from "../screens/userRecipe/UserRecipe";
 import Constants from "expo-constants";
 import { colors } from "../utils/colors";
+import UserRecipes from "../screens/userRecipe/UserRecipes";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -17,7 +17,7 @@ export default function MyRecipes() {
         tabBarActiveTintColor: colors.purple,
       }}
     >
-      <Tab.Screen name="My Recipes" component={UserRecipe} />
+      <Tab.Screen name="My Recipes" component={UserRecipes} />
       <Tab.Screen name="New Recipe" component={NewRecipeForm} />
     </Tab.Navigator>
   );

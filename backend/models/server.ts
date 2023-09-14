@@ -45,8 +45,10 @@ class Server {
 	middlewares() {
 		// CORS
 		this.app.use(cors());
-		// Lectura del body
-		this.app.use(express.json());
+
+		this.app.use(express.json({ limit: '10mb' }));
+		this.app.use(express.urlencoded({ limit: '10mb', extended: true, parameterLimit: 50000 }));
+
 		// Public folder
 		this.app.use(express.static('public'));
 	}

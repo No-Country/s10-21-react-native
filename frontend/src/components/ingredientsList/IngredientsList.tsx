@@ -8,8 +8,8 @@ const IngredientsList = (ingredientsArray: {
 }) => {
   return (
     <View>
-      {ingredientsArray.ingredients.map((ingredient) => {
-        return <IngredientItem text={ingredient.text} uri={ingredient.image} />;
+      {ingredientsArray.ingredients.map((ingredient, index) => {
+        return <IngredientItem key={index} text={ingredient.text} uri={ingredient.image} />;
       })}
     </View>
   );

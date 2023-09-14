@@ -10,7 +10,7 @@ const AuthScreen = () => (
 			resizeMode='cover'
 			style={styles.image}
 		>
-			<Text style={styles.text}>Food App</Text>
+			<Text style={styles.text}>Dish Detective</Text>
 			<Auth />
 		</ImageBackground>
 	</View>

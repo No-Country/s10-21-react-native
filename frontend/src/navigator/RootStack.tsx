@@ -13,6 +13,8 @@ import { UserScreen } from '../screens/UserScreen';
 import { AppContext } from '../context/AppContext';
 import MyRecipes from './MyRecipeTopTab';
 import { HomeStackScreen } from './HomeStack';
+import { UserRecipeStackScreen } from './UserRecipeStack';
+import { SliderIcon } from '../../assets/Icons/SVGicons';
 
 export type RootStackParamList = {
 	Home: undefined;
@@ -31,7 +33,6 @@ export default function RootStack() {
 
 	useEffect(() => {
 		getAllData();
-		console.log(token);
 	}, [token]);
 
 	return (
@@ -50,7 +51,7 @@ export default function RootStack() {
 					component={CategoriesScreen}
 					options={{
 						tabBarLabel: 'Categories',
-						tabBarIcon: ({ color }) => <Fontisto name='favorite' size={24} color={color} />,
+						tabBarIcon: ({ color }) => <SliderIcon color={color} />,
 					}}
 				/>
 				<Tab.Screen
@@ -64,7 +65,7 @@ export default function RootStack() {
 
 				<Tab.Screen
 					name='NewRecipeForm'
-					component={token ? MyRecipes : ToLoginScreen}
+					component={token ? UserRecipeStackScreen : ToLoginScreen}
 					options={{
 						tabBarLabel: 'My Recipes',
 						tabBarIcon: ({ color }) => <Ionicons name='list' size={24} color={color} />,

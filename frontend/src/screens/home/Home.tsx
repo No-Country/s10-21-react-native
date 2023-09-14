@@ -7,6 +7,7 @@ import { useFoodApi } from '../../hooks/useFoodApi';
 import { AppContext } from '../../context/AppContext';
 import HomeFooter from '../../homeFooter/HomeFooter';
 import { colors } from '../../utils/colors';
+import Toast from 'react-native-toast-message';
 
 const Home = () => {
 	const [query, setQuery] = useState('');
@@ -35,7 +36,7 @@ const Home = () => {
 		return () => {
 			clearTimeout(debounced);
 		};
-	}, [query, queries, favorites]);
+	}, [query, queries]);
 
 	return (
 		<View style={styles.container}>
@@ -63,6 +64,7 @@ const Home = () => {
 			) : (
 				<ActivityIndicator size='large' color={colors.purple} />
 			)}
+			<Toast />
 		</View>
 	);
 };

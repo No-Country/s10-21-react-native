@@ -4,10 +4,9 @@ import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   userRecipeContainer: {
-    justifyContent: "center",
-    alignItems: "center",
     height: '100%',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    padding: 30
   },
   text:{
     fontSize:20
@@ -62,4 +61,14 @@ export const styles = StyleSheet.create({
     color: colors.purpleLight,
     marginHorizontal: 5,
   },
+  ListFooterComponent:{
+    padding: 10
+  },
+  noRecipeMesssage: {
+    backgroundColor: "#fff",
+    flex: 1,
+    fontSize:20,
+    paddingTop: 30,
+    textAlign: 'center'
+  }
 });
