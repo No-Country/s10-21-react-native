@@ -11,10 +11,10 @@ export const ToLoginScreen = () => {
 	};
 	return (
 		<View style={styles.container}>
-			<Text>Necesita iniciar sesion para utilizar esta funcionalidad</Text>
+			<Text>You need to log in to use this functionality</Text>
 			{/* Login button */}
 			<TouchableOpacity style={styles.button} onPress={goToLogin}>
-				<Text>Iniciar sesion</Text>
+				<Text>Go to Login</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: '#DDDDDD',
 		padding: 10,
+		marginTop: 20,
 	},
 });

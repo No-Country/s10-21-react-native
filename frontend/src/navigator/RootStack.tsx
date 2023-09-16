@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useContext, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { CategoriesScreen } from "../screens/CategoriesScreen";
@@ -17,19 +17,19 @@ import { UserRecipeStackScreen } from "./UserRecipeStack";
 import { SliderIcon } from "../../assets/Icons/SVGicons";
 
 export type RootStackParamList = {
-  Home: undefined;
-  SavedRecipes: undefined;
-  Favorites: undefined;
-  AddRecipe: undefined;
-  AuthScreen: undefined;
-  User: undefined;
-  NewRecipeForm: undefined;
+	Home: undefined;
+	SavedRecipes: undefined;
+	Favorites: undefined;
+	AddRecipe: undefined;
+	AuthScreen: undefined;
+	User: undefined;
+	NewRecipeForm: undefined;
 };
 
 const Tab = createMaterialBottomTabNavigator<RootStackParamList>();
 
 export default function RootStack() {
-  const { token, getAllData } = useContext(AppContext);
+	const { token, getAllData } = useContext(AppContext);
 
   useEffect(() => {
     getAllData();
