@@ -34,8 +34,9 @@ export const createRecipe = async (req: Request, res: Response) => {
 };
 
 export const getRecipes = async (req: Request, res: Response) => {
+	const user = req.body.user._id;
 	try {
-		const recipes = await Recipe.find().exec();
+		const recipes = await Recipe.find({ user }).exec();
 		res.json({ msg: 'Get recipes', recipes });
 	} catch (error) {
 		console.log(error);

@@ -2,8 +2,9 @@ import { Request, Response } from 'express';
 import Favourites from '../models/favourites';
 
 export const getFavourites = async (req: Request, res: Response) => {
+	const user = req.body.user._id;
 	try {
-		const favourites = await Favourites.find().exec();
+		const favourites = await Favourites.find({ user }).exec();
 		res.json({
 			ok: true,
 			favourites,
