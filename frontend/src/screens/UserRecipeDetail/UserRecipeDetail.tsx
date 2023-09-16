@@ -27,9 +27,8 @@ const UserRecipeDetail = ({ route }) => {
         try {
           const response = await appDB.delete(`/recipe/${id}`, {
             headers: {
-              ["x-token"]:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTAwN2Q2OWI0MjQyYjQxMjUzOTY4N2YiLCJ1c2VyTmFtZSI6IllvbmEiLCJpYXQiOjE2OTQ2NTEyOTksImV4cCI6MTY5NDczNzY5OX0.QlRUOFLjcrs1c4L6akFvE08VZODiSAxhBO2xMskQaWw",
-            },
+							['x-token']: token,
+						},
           });
 
           if (response.status == 200) {
