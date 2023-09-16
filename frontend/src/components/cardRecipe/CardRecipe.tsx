@@ -19,7 +19,6 @@ const CardHome = ({ ...data }: HitsProps) => {
 	const { token, favorites, addFavorite } = useContext(AppContext);
 
 	const saveFavorite = (data: HitsProps) => {
-		console.log('Save favorite ' + data._links.self.href);
 		addFavorite(data);
 	};
 

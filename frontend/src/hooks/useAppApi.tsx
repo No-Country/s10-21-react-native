@@ -17,7 +17,6 @@ export const useAppApi = () => {
 			const response = await appDB.post('/favourites', data, {
 				headers: { ['x-token']: token },
 			});
-			console.log(response.data.msg);
 			return response.data;
 		} catch (error) {
 			return error.response.data;

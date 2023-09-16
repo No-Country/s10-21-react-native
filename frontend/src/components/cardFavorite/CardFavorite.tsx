@@ -23,7 +23,7 @@ const CardFavorite = ({ data }: Props) => {
 	const { delFavorite } = useContext(AppContext);
 
 	const deleteFavorite = (data: favoritesProps) => {
-		console.log('Delete favorite ' + data._id);
+
 		delFavorite(data._id);
 	};
 

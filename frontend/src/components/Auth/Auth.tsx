@@ -13,7 +13,7 @@ import { AppContext } from '../../context/AppContext';
 WebBrowser.maybeCompleteAuthSession();
 
 GoogleSignin.configure({
-	webClientId: '218714927517-slee8dhh8a97g5911doktccjq7iqe9ec.apps.googleusercontent.com',
+	webClientId: process.env.GOOGLE_CLIENT_ID || google_client_id,
 	offlineAccess: true,
 });
 
@@ -23,7 +23,6 @@ export default function Auth() {
 	const signIn = async () => {
 		try {
 			const sing = await GoogleSignin.hasPlayServices();
-			console.log(sing);
 			// TODO: send token to backend
 			const data = await GoogleSignin.signIn();
 			await getUserData(data.idToken);

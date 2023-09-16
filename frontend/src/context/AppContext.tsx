@@ -61,9 +61,6 @@ export const AppContextProvider = ({ children }: any) => {
 		const response = await login(idTokenGoogle);
 
 		if (response.token) {
-			// setToken(response.token);
-			// setUser(response.data);
-			// save token to async storage
 			await AsyncStorage.setItem('token', response.token);
 			await AsyncStorage.setItem('user', JSON.stringify(response.data));
 
@@ -128,9 +125,11 @@ export const AppContextProvider = ({ children }: any) => {
 
 	const updateFavorites = async () => {
 		const data = await getAllFavorites(token);
-		if (data) {
+		console.log('trayendo favoritos');
+		if (token && data.favourites) {
 			setFavorites(data.favourites);
 		} else {
+			console.log('no se pudieron obtener los favoritos');
 			setFavorites([]);
 			if (data.msg === 'Token expirado' || data.msg === 'Token no válido') {
 				deleteLoginData();
