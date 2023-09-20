@@ -31,7 +31,7 @@ Most of us don't really care about everything we put into our bodies while eatin
 - Carlos Jonatan Bordon
   
 [![github Carlos](https://img.shields.io/badge/github-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/YonaBordon)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/carlosjbordon/)
 
 
 - Francisco Baca
